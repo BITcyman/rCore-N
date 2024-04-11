@@ -125,7 +125,7 @@ impl TaskControlBlockInner {
                 let trap_queue = self.user_trap_info.as_mut().unwrap().get_trap_queue_mut();
                 *trap_queue = UserTrapQueue::new();
                 unsafe {
-                    sstatus::set_uie();
+                    sstatus::set_uie();     // 使能用户态中断
                 }
                 return Ok(USER_TRAP_BUFFER as isize);
             } else {

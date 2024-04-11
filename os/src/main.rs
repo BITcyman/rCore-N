@@ -56,10 +56,14 @@ pub fn rust_main(hart_id: usize) -> ! {
         mm::remap_test();
         trace::init();
         trace::trace_test();
+        debug!("[kernel {}] trace init finished", hart_id);
         trap::init();
+        debug!("[kernel {}] trap init finished", hart_id);
         plic::init();
         plic::init_hart(hart_id);
+        debug!("[kernel {}] plic init finished", hart_id);
         uart::init();
+        debug!("[kernel {}] uart init finished", hart_id);
 
         extern "C" {
             fn boot_stack();
